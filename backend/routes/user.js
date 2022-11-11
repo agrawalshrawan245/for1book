@@ -1,10 +1,9 @@
-const express = require("express")
+const express = require("express");
+const { register } = require("../controllers/user");
 const router = express.Router();
 
 
-router.use("/", (req,res)=>{
-    console.log("this is user")
-})
+router.post("/register", register)
 
 
 
