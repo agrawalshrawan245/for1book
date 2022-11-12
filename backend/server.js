@@ -8,8 +8,13 @@ const connectDB = require("./database/db.js")
 const app = express()
 
 dotenv.config()
-// connectDB()
+connectDB()
 
+app.use(express.json())
+
+app.get("/", (req,res) => {
+    res.send(req.body)
+})
 
 readdirSync("./routes").map((r)=>app.use("/api", require(`./routes/${r}`)))
 
