@@ -1,16 +1,17 @@
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import login from "./pages/login";
-import profile from "./pages/profile";
-import home from "./pages/home";
+import Login from "./pages/Login";
+import Profile from "./pages/Profile";
+import Home from "./pages/Home";
 
 function App() {
   return (
-    // <div className="container bg-primary">hi</div>
-    <Router>
-      <Route path="/login" component={login} exact />
-      <Route path="/profile" component={profile} exact />
-      <Route path="/" component={home} exact />
-    </Router>
+    <div className="">
+      <Router>
+        <Route path="/login" component={Login} exact />
+        <Route path="/profile" component={Profile} exact />
+        <Route path="/" component={Home} exact />
+      </Router>
+    </div>
   );
 }
 

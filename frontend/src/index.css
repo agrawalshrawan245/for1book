@@ -13,6 +13,41 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+.full-page{
+  height: 100vh;
+}
+
+.bg-fresh{
+  background-color: rgb(234, 238, 239);
+}
+
+.bold{
+  font-weight: 790;
+  font-size: 3.5rem;
+}
+
+.float-right{
+  float:right;
+}
+
+.modal-fade{
+  background-color: #ffffffc0;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-lg {
+  font-weight: 400;
+  font-size: 1.7rem;
+}
+
 :root {
   --bg-primary: #fff;
   --bg-secondary: #f0f2f5;
