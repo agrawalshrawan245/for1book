@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { usrRegisterA } from '../actions/userActions';
 import { useDispatch } from "react-redux";
 
@@ -11,7 +11,7 @@ export default function Register({setModal, history}) {
     const [bYear, setbYear] = useState("2021")
     const [bMonth, setbMonth] = useState("11")
     const [bDay, setbDay] = useState("14")
-    const [gender, setGender] = useState("")
+    const [gender, setGender] = useState("Male")
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -89,6 +89,7 @@ export default function Register({setModal, history}) {
                                 <input onChange={(e)=>{setGender(e.target.value)}} type="radio" className="form-check-input" name="Radio" value="Other" />
                             </div>
                         </div>
+                        {/* { (gender !== "Male" && gender !== "Female") && <input value={gender} onChange={(e)=>{setGender(e.target.value)}} type="text" className="form-control bg-grey my-3" placeholder="Please type custom gender..." />} */}
                     </div>
 
 
