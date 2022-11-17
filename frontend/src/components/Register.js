@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-import axios from "axios";
+import { usrRegisterA } from '../actions/userActions';
+import { useDispatch } from "react-redux";
 
-export default function Modal({setModal}) {
+export default function Register({setModal, history}) {
+    const dispatch = useDispatch();
     const [first_name, setfirst_name] = useState("") 
     const [last_name, setlast_name] = useState("")
     const [email, setEmail] = useState("")
@@ -11,10 +13,10 @@ export default function Modal({setModal}) {
     const [bDay, setbDay] = useState("14")
     const [gender, setGender] = useState("")
 
-    const submitHandler = async(e) => {
+    const submitHandler = (e) => {
         e.preventDefault();
-        const {data} = await axios.post('/api/register', {first_name, last_name, email, password, bYear, bMonth, bDay, gender});
-        console.log(data);
+        dispatch(usrRegisterA({first_name, last_name, email, password, bYear, bMonth, bDay, gender}));
+        history.push("/");
     }
 
 
@@ -101,5 +103,90 @@ export default function Modal({setModal}) {
             </div>
         </div>                
     </div>
+                /* {modal && 
+                <div className="float-start modal-fade shadow-lg">
+                <div className="card max-w-30">
+                    <div className="card-body">
+                        <div className="clearfix m-0">
+                            <h2 className="card-title mb-0 pb-0 float-left d-inline">Sign up</h2>
+                            <button className="float-right btn btn-light p-1 text-muted" onClick={()=>{setModal(false)}}><i className="fas fa-times"/></button>
+                        </div>
+                        <small className="card-title mt-0 text-muted" >It's quick and easy.</small>
+                        <div className="my-3 border-top"></div>
+
+                        <form>
+                            <div className="row mb-2">
+                                <div className="col-6">
+                                    <input type="text" className="form-control bg-grey" placeholder="First name" />
+                                </div>
+                                <div className="col-6">
+                                    <input type="text" className="form-control bg-grey" placeholder="Last name" />
+                                </div>
+                            </div>
+
+                            <input type="email" className="form-control mb-2 bg-grey" placeholder="Mobile number or Email" />
+                            <input type="password" className="form-control bg-grey" placeholder="New password" />
+
+                            <small className="text-muted mt-2">Date of Birth <i className="fas fa-question-circle" /></small>
+
+                            <div className="row">
+                                <div className="col">
+                                    <select className="form-select">
+                                        <option value="2021">2021</option>
+                                        <option value="2022">2022</option>
+                                    </select>
+                                </div>
+                                <div className="col">
+                                    <select className="form-select">
+                                        <option value="11">November</option>
+                                        <option value="12">December</option>
+                                    </select>
+                                </div>
+                                <div className="col">
+                                    <select className="form-select">
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <small className="text-muted">Gender <i className="fas fa-question-circle" /></small>
+
+                            <div className="row">
+                                <div className="col">
+                                    <div className="border rounded p-2">
+                                        <label className="form-check-label"> Male </label>
+                                        <input type="radio" className="form-check-input" name="Radio" />
+                                    </div>
+                                </div>
+                                <div className="col">
+                                    <div className="border rounded p-2">
+                                        <label className="form-check-label"> Female </label>
+                                        <input type="radio" className="form-check-input" name="Radio" />
+                                    </div>
+                                </div>
+                                <div className="col">
+                                    <div className="border rounded p-2">
+                                        <label className="form-check-label"> Custom </label>
+                                        <input type="radio" className="form-check-input" name="Radio" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <small className="d-block text-muted">People who use our service may have uploaded your contact information to For1book. Learn more.</small>
+
+                            <div className="text-center mt-2">
+                                <button type="submit" className="btn btn-success my-3">Create New Account</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>                
+            </div>
+            }
+             */
+
 )
+
 }
+

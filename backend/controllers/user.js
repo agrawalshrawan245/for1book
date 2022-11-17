@@ -8,7 +8,6 @@ const regexPassword = /^.*$/
 
 exports.register = async (req, res) => {
     try {
-        // console.log(req.body)
         if(!req.body.email.match(regexEmail)){
             return res.status(400).json({message:"Invalid email!"})
         }
@@ -34,8 +33,8 @@ exports.register = async (req, res) => {
 
         const token = jwt.sign({id:user._id.toString()}, process.env.JWT_PASSWORD, {expiresIn:"30d"})
 
-        const {password, ...rest} = req.body;
-        res.json({...rest, username, token});
+        const {_id, first_name, last_name, email, ...rest} = req.body;
+        res.json({_id, first_name, last_name, email, username, token});
     } catch (error) {
         res.status(500).json({message: error.message})
     }
@@ -53,6 +52,7 @@ exports.login = async(req, res) => {
                 first_name:user.first_name,
                 last_name:user.last_name,
                 email:user.email,
+                username:user.username,
                 token: jwt.sign({id:user._id.toString()}, process.env.JWT_PASSWORD, {expiresIn:"30d"})
             })
         }else{
