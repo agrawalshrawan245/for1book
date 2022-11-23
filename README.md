@@ -11,7 +11,7 @@
 
 ---
 
-<p align="center"> This is a sample readme, I will update it shortly.
+<p align="center"> I am building this websit to clone the facebook website. Please check it out I have pasted one screen above.
     <br> 
 </p>
 

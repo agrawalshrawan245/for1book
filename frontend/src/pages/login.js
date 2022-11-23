@@ -35,7 +35,7 @@ const Login = ({history}) => {
             <div className="row full-page align-items-center">
                 <div className="col-lg-1"></div>
                 <div className="col-lg-6 p-lg-5">
-                    <h1 className="text-primary bold">for1book</h1>
+                    <h1 className="text-primary bold"><Link to="/">for1book</Link></h1>
                     <p className="text-lg">Connect with friends and the world around you on For1book.</p>
                 </div>
                 <div className="col-lg-4">

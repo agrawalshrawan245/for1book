@@ -1,5 +1,6 @@
 const express = require("express")
 const colors = require("colors")
+const path = require("path")
 const dotenv = require("dotenv")
 const {readdirSync} = require("fs")
 const connectDB = require("./database/db.js")
@@ -12,9 +13,9 @@ connectDB()
 
 app.use(express.json())
 
-app.get("/", (req,res) => {
-    res.send(req.body)
-})
+app.get("/", (req,res) => { res.send("API is running!!") })
+
+const dirname = path.resolve()
 
 readdirSync("./routes").map((r)=>app.use("/api", require(`./routes/${r}`)))
 

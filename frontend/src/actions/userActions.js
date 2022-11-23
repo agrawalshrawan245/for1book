@@ -27,6 +27,27 @@ export const usrRegisterA = (reqData) => async(dispatch) => {
 
 
 
+export const usrUpdateA = (reqData) => async(dispatch, getState) => {
+    // console.log("config")
+    try{
+        const {userLogin:{userInfo},} = getState()
+        const config = {
+            headers: { 
+                Authorization: `Bearer ${userInfo.token}`,
+            }
+        }
+        dispatch({type:"USR_LOGIN_REQ",})
+        // console.log(userInfo)
+        const {data} = await axios.put(`/api/update`, {...reqData}, config)
+        dispatch({type:"USR_LOGIN_SUCC", payload: data})
+        cookies.set("user", JSON.stringify(data))
+    }catch(error){
+        dispatch({type:"USR_LOGIN_FAIL", payload:error.message})
+    }
+}
+
+
+
 
 
 

@@ -15,7 +15,35 @@
 }        
 
 .bg-grey{
-    background-color: rgb(246, 246, 246);
+    background-color: rgb(240, 240, 240);
 }
 
+.v-100{
+    min-height: 100vh;
+}
 
+.w-20{
+    width: 22%;
+}
+
+.bg-dark-grey{
+    background: rgb(233, 233, 233);
+}
+
+.mt-7{
+    padding-top: 5.3rem;
+}
+
+.navbar{
+    height: 4rem;
+    width: 100%;
+}
+
+.img-cover{
+    object-fit: cover;
+}
+
+.bold{
+    font-size: 1rem;
+    font-weight: 600;
+}

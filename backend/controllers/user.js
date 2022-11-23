@@ -1,10 +1,30 @@
 const User = require("../database/models/User")
 const bcrypt = require("bcrypt")
+const path = require("path")
 const jwt = require("jsonwebtoken")
+const asyncHandler = require("express-async-handler")
+
 
 const regexEmail = /^([a-z0-9/.]{3,})@([a-z]{3,11}).(com)$/i
 // const regexPassword = /^.*(?=.{6,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&?@ "]).*$/
 const regexPassword = /^.*$/
+
+
+exports.searchUsers = asyncHandler(async(req, res) => {
+    // req.params.id
+    const searchP1 = req.query.keyword ? {
+        first_name : {
+            $regex: req.query.keyword,
+            $options: 'i'
+        }
+    } : {}
+    
+    const user = await User.find({...searchP1})
+    console.log(user)
+
+    res.json(user)
+})
+
 
 exports.register = async (req, res) => {
     try {
@@ -33,8 +53,8 @@ exports.register = async (req, res) => {
 
         const token = jwt.sign({id:user._id.toString()}, process.env.JWT_PASSWORD, {expiresIn:"30d"})
 
-        const {_id, first_name, last_name, email, ...rest} = req.body;
-        res.json({_id, first_name, last_name, email, username, token});
+        const {_id, first_name, last_name, email, picture, cover, ...rest} = req.body;
+        res.json({_id, first_name, last_name, email, picture, username, cover, token});
     } catch (error) {
         res.status(500).json({message: error.message})
     }
@@ -53,6 +73,8 @@ exports.login = async(req, res) => {
                 last_name:user.last_name,
                 email:user.email,
                 username:user.username,
+                picture:user.picture,
+                cover:user.cover,
                 token: jwt.sign({id:user._id.toString()}, process.env.JWT_PASSWORD, {expiresIn:"30d"})
             })
         }else{
@@ -64,4 +86,37 @@ exports.login = async(req, res) => {
 }
 
 
+exports.update = async(req, res) => {
+    // console.log(req.body)
+    // res.json({})
+    let {first_name, last_name, profileD, coverD, bYear, bDay, bMonth, gender, password} = req.body;
+
+    // console.log(req.body)
+
+    if(password) password = await bcrypt.hash(password, 10)
+
+    req.user.first_name = first_name || req.user.first_name
+    req.user.last_name = last_name || req.user.last_name
+    req.user.picture = profileD || req.user.picture
+    req.user.cover = coverD || req.user.cover
+    req.user.bYear = bYear || req.user.bYear
+    req.user.bDay = bDay || req.user.bDay
+    req.user.bMonth = bMonth || req.user.bMonth
+    req.user.gender = gender || req.user.gender
+    req.user.password = password || req.user.password
+
+    await req.user.save()
+
+    res.json({
+        _id:req.user._id,
+        first_name:req.user.first_name,
+        last_name:req.user.last_name,
+        email:req.user.email,
+        picture:req.user.picture,
+        username:req.user.username,
+        cover:req.user.cover,
+        token: jwt.sign({id:req.user._id.toString()}, process.env.JWT_PASSWORD, {expiresIn:"30d"})
+    })
+
+}
 

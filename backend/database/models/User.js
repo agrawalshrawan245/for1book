@@ -42,6 +42,7 @@ const userSchema = mongoose.Schema(
     cover: {
       type: String,
       trim: true,
+      default:"https://agrawals3.s3.amazonaws.com/for1book/image-1669116824916.jpg",
     },
     gender: {
       type: String,
