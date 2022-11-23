@@ -7,20 +7,26 @@ const asyncHandler = require("express-async-handler")
 
 const regexEmail = /^([a-z0-9/.]{3,})@([a-z]{3,11}).(com)$/i
 // const regexPassword = /^.*(?=.{6,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&?@ "]).*$/
-const regexPassword = /^.*$/
+const regexPassword = /^.{4,}$/
 
 
 exports.searchUsers = asyncHandler(async(req, res) => {
     // req.params.id
-    const searchP1 = req.query.keyword ? {
-        first_name : {
+    const searchP1 = req.query.keyword && req.query.keyword.length ? {
+        "first_name" : {
             $regex: req.query.keyword,
-            $options: 'i'
-        }
+            $options: 'i',
+        },
+    } : {}
+    const searchP2 = req.query.keyword && req.query.keyword.length ? {
+        last_name : {
+            $regex: req.query.keyword,
+            $options: 'i',
+        },
     } : {}
     
-    const user = await User.find({...searchP1})
-    console.log(user)
+    const user = await User.find({$or:[searchP1, searchP2]}, {first_name:1,last_name:1, picture:1}).limit(5)
+    // const user = await User.find({$or:[searchP1, searchP2]},{first_name:"1"},{ last_name:"1"},{picture:"1"})
 
     res.json(user)
 })

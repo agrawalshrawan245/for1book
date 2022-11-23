@@ -1,4 +1,5 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import {Logo, Search} from "../svg";
@@ -7,6 +8,18 @@ import {Logo, Search} from "../svg";
 
 export default function Header() {
     const {userInfo} = useSelector(s=>s.userLogin)
+    const [search, setSearch] = useState("")
+    const [searchL, setSearchL] = useState("")
+
+    useEffect(()=>{
+        const func = async() => {
+            if(search.length){
+                const {data} = await axios.get(`/api/searchuser?keyword=${search}`, {})
+                setSearchL(data)
+            }
+        }
+        func()
+    },[search])
 
     return (
         <>
@@ -14,9 +27,21 @@ export default function Header() {
         <nav className="navbar navbar-expand-sm bg-white shadow px-3 fixed-top">
             {/* First */}
             <Link to="/login" className="navbar-brand"><Logo /></Link>
-            <div className="input-group w-20">
+            <div className="input-group w-20 dropdown">
                 <span className="input-group-text border-0"><Search /></span>
-                <input type="search" className="bg-grey form-control border-0 p-2" placeholder="Search..." />
+                <input type="search" value={search} onChange={e=>setSearch(e.target.value)} className="bg-grey form-control border-0 p-2" placeholder="Search..." />
+                <div className='dropdown-content'>
+
+                {searchL && searchL.map(function (item, index){
+                    return(
+                        <>
+                            {index !==0 && <hr/>}
+                            <img alt="" src={item.picture} height="40px" width="40px" className="rounded-circle  img-cover" />
+                            <spam className="ms-2"><strong>{item.first_name} {item.last_name}</strong></spam>
+                        </>
+                    )
+                })}
+                </div>
             </div>
 
             {/* Middle */}

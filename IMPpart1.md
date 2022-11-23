@@ -49,3 +49,15 @@ import { useNavigate } from "react-router-dom";
 navigate = useNavigate();
 navigate("<link>");
 ```
+
+## Use of {match, location, history}
+
+```js
+link = "/cart/:id?qty=12
+const id = match.params.id
+const qty = location.search ? Number(location.search.split('=')[1]) : 1
+history.push("/location")
+
+// To go back
+history.go(-1)
+```
