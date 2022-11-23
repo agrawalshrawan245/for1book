@@ -10,11 +10,13 @@ temp.txt
 
 # testing
 /coverage
+/.vscode
 
 # production
 /build
 
 # misc
+.env
 /*/.env
 .DS_Store
 .env.local
