@@ -7,7 +7,6 @@ import Profile from "./pages/Profile";
 
 function App() {
   return (
-    <div className="">
       <Router>
         <Route path="/login" component={Login} exact />
         <Route path="/image" component={Image} exact />
@@ -15,7 +14,6 @@ function App() {
         <Route path="/profile" component={Profile} exact />
         <Route path="/" component={Home} exact />
       </Router>
-    </div>
   );
 }
 

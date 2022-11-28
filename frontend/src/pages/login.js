@@ -5,7 +5,7 @@ import { Link, Route } from "react-router-dom";
 import Register from "../components/Register";
 import { useDispatch } from "react-redux";
 import { usrLoginA } from '../actions/userActions';
-import {useNavigate} from "react-router-dom";
+// import {useNavigate} from "react-router-dom";
 
 
 const Login = ({history}) => {
@@ -25,43 +25,36 @@ const Login = ({history}) => {
 
 
     return (
-        <div className="bg-fresh">
+        <div className="bg-gray-100">
 
             {modal && <Register setModal={setModal} history={history}/>}
             {/* {modal && <Route render={({history}) => <Register history = {history} setModal={setModal} />} />} */}
 
 
-            <div className="container">
-            <div className="row full-page align-items-center">
-                <div className="col-lg-1"></div>
-                <div className="col-lg-6 p-lg-5">
-                    <h1 className="text-primary bold"><Link to="/">for1book</Link></h1>
-                    <p className="text-lg">Connect with friends and the world around you on For1book.</p>
+            <div className="w-10/12 container mx-auto">
+            <div className="md:flex md:items-center md:justify-center min-h-screen md:pb-24">
+                <div className="md:mb-28 md:w-1/2 lg:w-2/3 mx-auto md:mx-none">
+                    <h1 className="text-primary font-bold text-[3.6rem]"><Link to="/">for1book</Link></h1>
+                    <p className="text-2xl">For1book helps you connect and share with the people in your life.</p>
                 </div>
-                <div className="col-lg-4">
-                    <div className="border rounded p-3 shadow  bg-light">
-                        <div className="form-group mt-3">
-                            <input className="form-control p-3" type={"text"} value={email} onChange={(e)=>{setEmail(e.target.value)}} placeholder="Email or phone number" />
-                        </div>
-                        <div className="form-group mt-3">
-                            <input className="form-control p-3" type={"password"} value={password} onChange={(e)=>{setPassword(e.target.value)}} placeholder="Password" />
-                        </div>
+                <div className="md:w-1/2 lg:w-1/3 mx-auto md:mx-none m-10">
+                    <div className="border p-2 bg-white shadow-xl rounded-lg">
+                        <input className="input" type={"text"} value={email} onChange={(e)=>{setEmail(e.target.value)}} placeholder="Email or phone number" autofocus />
+                        <input className="input" type={"password"} value={password} onChange={(e)=>{setPassword(e.target.value)}} placeholder="Password" />
 
-                        <button className="btn btn-primary mt-3 p-2 w-100" type="submit" onClick={submitHandlerLogin}><strong>Log In</strong></button>
+                        <button className="btn-primary block w-[96%] mt-3 mx-auto" type="submit" onClick={submitHandlerLogin}><strong>Log In</strong></button>
 
-                        <Link to="/" className="d-block mt-2 text-center text-primary mb-4">Forgot password?</Link>
+                        <Link to="/" className="block text-center my-4 text-primary">Forgot password?</Link>
 
-                        <div className="border-top"></div>
+                        <hr />
+                        {/* <div className="border-top"></div> */}
 
-                        <div className="text-center">
-                            <button className="btn btn-success mt-4 p-3" onClick={()=>{setModal(true)}}><strong>Create new account</strong></button>
-                        </div>
+                        <button className="btn-success mt-4 block mx-auto" onClick={()=>{setModal(true)}}><strong>Create new account</strong></button>
 
                     </div>
                     <br />
-                    <Link to="/" className="mt-1 d-block text-center"><strong>Create a Page</strong> for a celebrity, brand or business.</Link>
+                    <Link to="/" className="mt-0 block text-center"><strong>Create a Page</strong> for a celebrity, brand or business.</Link>
                 </div>
-                <div className="col-lg-1"></div>
 
             </div>
             </div>

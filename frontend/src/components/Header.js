@@ -24,12 +24,12 @@ export default function Header() {
     return (
         <>
         {userInfo &&
-        <nav className="navbar navbar-expand-sm bg-white shadow px-3 fixed-top">
+        <nav className="navbar bg-white shadow px-3 fixed-top">
             {/* First */}
-            <Link to="/login" className="navbar-brand"><Logo /></Link>
-            <div className="input-group w-20 dropdown">
-                <span className="input-group-text border-0"><Search /></span>
-                <input type="search" value={search} onChange={e=>setSearch(e.target.value)} className="bg-grey form-control border-0 p-2" placeholder="Search..." />
+            <Link to="/login" className=""><Logo /></Link>
+            <div className="w-20 dropdown">
+                <span className=""><Search /></span>
+                <input type="search" value={search} onChange={e=>setSearch(e.target.value)} className="input" placeholder="Search..." />
                 <div className='dropdown-content'>
 
                 {searchL && searchL.map(function (item, index){
@@ -45,7 +45,7 @@ export default function Header() {
             </div>
 
             {/* Middle */}
-            <div className="text-center w-100">
+            <div className="flex-1 text-center w-100">
                 <Link to="/">
                     <i className="fas fa-home fs-4 text-primary border-bottom border-5 border-primary py-3 px-4"></i>
                 </Link>

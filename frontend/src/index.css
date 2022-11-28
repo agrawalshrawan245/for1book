@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
   padding: 0;
   margin: 0;
@@ -6,33 +10,14 @@
 body {
   font-family: "Segoe UI", Helvetica, Arial, sans-serif;
 }
-html {
-  overflow-y: scroll;
-}
+
 a {
   text-decoration: none;
   color: inherit;
 }
 
-.full-page{
-  height: 100vh;
-}
-
-.bg-fresh{
-  background-color: rgb(234, 238, 239);
-}
-
-.bold{
-  font-weight: 790;
-  font-size: 3.5rem;
-}
-
-.float-right{
-  float:right;
-}
-
 .modal-fade{
-  background-color: #ffffffc0;
+  background-color: #efefefa2;
   height: 100vh;
   width: 100%;
   position: fixed;
@@ -43,30 +28,20 @@ a {
   align-items: center;
 }
 
-.text-lg {
-  font-weight: 400;
-  font-size: 1.7rem;
+
+.input{
+  @apply  border border-gray-300 p-2.5 text-[1rem] rounded-lg m-2 
+  focus:border-blue-500 focus:placeholder-gray-300 outline-none w-[97%]
 }
 
-:root {
-  --bg-primary: #fff;
-  --bg-secondary: #f0f2f5;
-  --bg-third: #e4e6eb;
-  --bg-forth: #f0f2f5;
-  --color-primary: #050505;
-  --color-secondary: #65676b;
-  --divider: #ced0d4;
-  --dark-bg-primary: #18191a;
-  --dark-bg-secondary: #242526;
-  --dark-bg-third: #3a3b3c;
-  --dark-color-primary: #242526;
-  --dark-color-secondary: #b0b3b8;
-  --blue-color: #1876f2;
-  --green-color: #42b72a;
-  --light-blue-color: #e7f3ff;
-  --border-color: #ccced2;
-  --shadow-1: rgba(0, 0, 0, 0.2);
-  --shadow-2: rgba(0, 0, 0, 0.1);
-  --shadow-3: rgba(0, 0, 0, 0.3);
-  --shadow-inset: rgba(255, 255, 255, 0.5);
+.btn-success{
+  @apply rounded-lg bg-success text-white p-2.5
+}
+
+.btn-primary{
+  @apply rounded-lg bg-primary text-white p-2.5
+}
+
+.card {
+  @apply border rounded-xl p-5 bg-white shadow-xl
 }

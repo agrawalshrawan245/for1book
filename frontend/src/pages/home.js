@@ -13,7 +13,7 @@ export default function Home(){
             {loading && <h1 className="text-center text-primary mt-5 pt-5" ><i className="fa fa-spinner fa-pulse fa-3x fa-fw" /></h1>}
             {error && <h1 className="bg-danger border-dark rounded m-5 p-3" >{error}</h1>}
             {userInfo && 
-            <div className="bg-grey v-100">
+            <div className="">
                 <Header />
                 <div className="row mt-7 justify-content-between">
 
