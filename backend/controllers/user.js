@@ -9,6 +9,29 @@ const regexEmail = /^([a-z0-9/.]{3,})@([a-z]{3,11}).(com)$/i
 // const regexPassword = /^.*(?=.{6,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&?@ "]).*$/
 const regexPassword = /^.{4,}$/
 
+exports.friendReq = asyncHandler(async(req, res) => {
+    const _idFriend = req.params.id;
+    const friend = await User.findById(_idFriend)
+    if(friend.requests.indexOf(req.user._id) && friend.friends.indexOf(req.user._id) == -1){
+        friend.requests.push(req.user._id)
+        await friend.save()
+        res.json("Request sent!!")
+    }else if(friend.friends.indexOf(req.user._id) != -1){
+        res.json("Already friends!")
+    }else{
+        res.json("Request already sent!")
+    }
+})
+
+exports.userDetails = asyncHandler(async(req, res) => {
+    if(req.params.id==req.user._id){
+        const user = await User.findById(req.params.id, {first_name: 1, last_name:1, picture:1, cover:1})
+        res.json(user)
+    }else{
+        const user = await User.findById(req.params.id, {first_name: 1, last_name:1, picture:1, cover:1})
+        res.json(user)
+    }
+})
 
 exports.searchUsers = asyncHandler(async(req, res) => {
     // req.params.id

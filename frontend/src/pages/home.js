@@ -13,78 +13,81 @@ export default function Home(){
             {loading && <h1 className="text-center text-primary mt-5 pt-5" ><i className="fa fa-spinner fa-pulse fa-3x fa-fw" /></h1>}
             {error && <h1 className="bg-danger border-dark rounded m-5 p-3" >{error}</h1>}
             {userInfo && 
-            <div className="">
+            <div className="relative">
                 <Header />
-                <div className="row mt-7 justify-content-between">
+                <div className="grid grid-cols-5 mt-16 w-screen">
 
                     {/* First */}
-                    <div className="col-3 position-relative">
-                        <div className="position-fixed">
-                            <Link to="/profile">
-                                <div>
-                                    <img className="rounded-circle mx-4 img-cover" alt="" height="40px" width="40px" src={userInfo.picture} />
-                                    <h5 className="d-inline">{userInfo.first_name} {userInfo.last_name}</h5>
+                    <div className="relative hidden md:block">
+                        <div className="fixed">
+                            <Link to={`/profile/${userInfo._id}`}>
+                                <div className="flex my-2">
+                                    <img className="rounded-full mx-4 object-cover h-10 w-10" alt="" src={userInfo.picture} />
+                                    <h5 className="font-semibold pt-1.5">{userInfo.first_name} {userInfo.last_name}</h5>
                                 </div>
                             </Link>
-                            <div>
+                            <div className="flex my-2">
                                 <img src="./left/friends.png" alt="" height="35px" width="35px" className="mx-4 mt-3" /> 
-                                <h5 className="d-inline bold">Friends</h5>
+                                <h5 className="font-semibold pt-4">Friends</h5>
                             </div>
-                            <div>
+                            <div className="flex my-2">
                                 <img src="./left/groups.png" alt="" height="35px" width="35px" className="mx-4 mt-3" /> 
-                                <h5 className="d-inline bold">Groups</h5>
+                                <h5 className="font-semibold pt-4">Groups</h5>
                             </div>
-                            <div>
+                            <div className="flex my-2">
                                 <img src="./left/watch.png" alt="" height="35px" width="35px" className="mx-4 mt-3" /> 
-                                <h5 className="d-inline bold">Watch</h5>
+                                <h5 className="font-semibold pt-4">Watch</h5>
                             </div>
-                            <div>
+                            <div className="flex my-2">
                                 <img src="./left/memories.png" alt="" height="35px" width="35px" className="mx-4 mt-3" /> 
-                                <h5 className="d-inline bold">Memories</h5>
+                                <h5 className="font-semibold pt-4">Memories</h5>
                             </div>
-                            <div>
+                            <div className="flex my-2">
                                 <img src="./left/saved.png" alt="" height="35px" width="35px" className="mx-4 mt-3" /> 
-                                <h5 className="d-inline bold">Saved</h5>
+                                <h5 className="font-semibold pt-4">Saved</h5>
                             </div>
-                            <div>
+                            <div className="flex my-2">
                                 <img src="./left/pages.png" alt="" height="35px" width="35px" className="mx-4 mt-3" /> 
-                                <h5 className="d-inline bold">Pages</h5>
+                                <h5 className="font-semibold pt-4">Pages</h5>
                             </div>
-                            <div>
+                            <div className="flex my-2">
                                 <img src="./left/events.png" alt="" height="35px" width="35px" className="mx-4 mt-3" /> 
-                                <h5 className="d-inline bold">Events</h5>
+                                <h5 className="font-semibold pt-4">Events</h5>
                             </div>
-                            <div>
+                            <div className="flex my-2 mb-4">
                                 <i className="fas fa-chevron-circle-down mt-4 mx-4" />
-                                <h5 className="d-inline bold">See more</h5>
+                                <h5 className="font-semibold pt-2">See more</h5>
                             </div> 
                             <hr/>
-                            <p className="ms-3 bold text-muted">Your shortcuts</p>
+                            <p className="m-3 font-bold">Your shortcuts</p>
                         </div>
                     </div>
 
                     {/* Middle */}
-                    <div className="col-5">
-                        <div className="card my-3 shadow">Lorem ipsum dolor sit amet consectetur adipisicing elit. A, ipsam maiores provident, quaerat quod nihil necessitatibus, hic vero aliquam eveniet praesentium alias dignissimos. Voluptas natus aperiam ipsum ab accusantium consequuntur iusto exercitationem, sapiente modi eligendi!</div>
-                        <div className="card my-3 shadow">Lorem ipsum dolor sit amet consectetur adipisicing elit. A, ipsam maiores provident, quaerat quod nihil necessitatibus, hic vero aliquam eveniet praesentium alias dignissimos. Voluptas natus aperiam ipsum ab accusantium consequuntur iusto exercitationem, sapiente modi eligendi!</div>
-                        <div className="card my-3 shadow">Lorem ipsum dolor sit amet consectetur adipisicing elit. A, ipsam maiores provident, quaerat quod nihil necessitatibus, hic vero aliquam eveniet praesentium alias dignissimos. Voluptas natus aperiam ipsum ab accusantium consequuntur iusto exercitationem, sapiente modi eligendi!</div>
+                    <div className="md:col-span-3 sm:col-span-4 col-span-5">
+                        <div className="w-8/12 mx-auto">
+                            <div className="card">Lorem ipsum dolor sit amet consectetur adipisicing elit. A, ipsam maiores provident, quaerat quod nihil necessitatibus, hic vero aliquam eveniet praesentium alias dignissimos. Voluptas natus aperiam ipsum ab accusantium consequuntur iusto exercitationem, sapiente modi eligendi!</div>
+                            <div className="card">Lorem ipsum dolor sit amet consectetur adipisicing elit. A, ipsam maiores provident, quaerat quod nihil necessitatibus, hic vero aliquam eveniet praesentium alias dignissimos. Voluptas natus aperiam ipsum ab accusantium consequuntur iusto exercitationem, sapiente modi eligendi!</div>
+                            <div className="card">Lorem ipsum dolor sit amet consectetur adipisicing elit. A, ipsam maiores provident, quaerat quod nihil necessitatibus, hic vero aliquam eveniet praesentium alias dignissimos. Voluptas natus aperiam ipsum ab accusantium consequuntur iusto exercitationem, sapiente modi eligendi!</div>
+                            <div className="card">Lorem ipsum dolor sit amet consectetur adipisicing elit. A, ipsam maiores provident, quaerat quod nihil necessitatibus, hic vero aliquam eveniet praesentium alias dignissimos. Voluptas natus aperiam ipsum ab accusantium consequuntur iusto exercitationem, sapiente modi eligendi!</div>
+                        </div>
                     </div>
 
                     {/* last */}
-                    <div className="col-3 position-relative">
-                        <div className="position-fixed">
-                            <p>Contacts</p>
-                            <div className="mt-3">
-                                <img className="rounded-circle mx-4 img-cover" alt="" height="40px" width="40px" src={userInfo.picture} />
-                                <h5 className="d-inline">{userInfo.first_name} {userInfo.last_name}</h5>
+                    <div className="relative sm:block hidden">
+                        <div className="fixed">
+                            <p className="text-lg font-medium">Contacts</p>
+                            <div className="mt-3 flex">
+                                <img className="rounded-full mx-4 object-cover h-10 w-10" alt="" src={userInfo.picture} />
+                                <h5 className="font-medium">{userInfo.first_name} {userInfo.last_name}</h5>
                             </div>
-                            <div className="mt-3">
-                                <img className="rounded-circle mx-4 img-cover" alt="" height="40px" width="40px" src={userInfo.picture} />
-                                <h5 className="d-inline">{userInfo.first_name} {userInfo.last_name}</h5>
+                            <div className="mt-3 flex">
+                                <img className="rounded-full mx-4 object-cover h-10 w-10" alt="" src={userInfo.picture} />
+                                <h5 className="font-medium">{userInfo.first_name} {userInfo.last_name}</h5>
                             </div>
-                            <div className="mt-3">
-                                <img className="rounded-circle mx-4 img-cover" alt="" height="40px" width="40px" src={userInfo.picture} />
-                                <h5 className="d-inline">{userInfo.first_name} {userInfo.last_name}</h5>
+                            <div className="mt-3 flex">
+                                <img className="rounded-full mx-4 object-cover h-10 w-10" alt="" src={userInfo.picture} />
+                                <h5 className="font-medium">{userInfo.first_name} {userInfo.last_name}</h5>
                             </div>
                         </div>
                     </div>

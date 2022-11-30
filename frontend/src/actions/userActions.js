@@ -1,6 +1,22 @@
 import axios from "axios";
 import cookies from "js-cookie";
 
+export const userDetailsA = (_id) => async(dispatch, getState) => {
+    try{
+        const {userLogin:{userInfo}} = getState()
+        const config = {
+            headers: { 
+                Authorization: `Bearer ${userInfo.token}`,
+            }
+        }
+        dispatch({type:"USR_DETAILS_REQ",})
+        const {data} = await axios.get(`/api/profile/${_id}`, config)
+        dispatch({type:"USR_DETAILS_SUCC", payload:data})
+    }catch(error){
+        dispatch({type:"USR_DETAILS_FAIL", payload:error.message})
+    }
+}
+
 // export const usrLoginA = (email, password) => {
 export const usrLoginA = (email, password) => async(dispatch) => {
     try{
@@ -37,7 +53,6 @@ export const usrUpdateA = (reqData) => async(dispatch, getState) => {
             }
         }
         dispatch({type:"USR_LOGIN_REQ",})
-        // console.log(userInfo)
         const {data} = await axios.put(`/api/update`, {...reqData}, config)
         dispatch({type:"USR_LOGIN_SUCC", payload: data})
         cookies.set("user", JSON.stringify(data))

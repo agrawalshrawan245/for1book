@@ -84,6 +84,10 @@ const userSchema = mongoose.Schema(
       type: Array,
       default: [],
     },
+    chats: {
+      type: Array,
+      default: [],
+    },
     search: [
       {
         user: {

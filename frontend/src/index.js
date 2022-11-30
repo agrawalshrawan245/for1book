@@ -11,9 +11,10 @@ import thunk from "redux-thunk";
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from "redux-devtools-extension"
 
-import { userLoginR } from './reducers/userReducer';
+import { userDetailsR, userLoginR } from './reducers/userReducer';
 
 const rootReducer = combineReducers({
+  userDetails: userDetailsR,
   userLogin: userLoginR,
 })
 

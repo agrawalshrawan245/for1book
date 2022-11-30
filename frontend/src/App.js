@@ -11,7 +11,7 @@ function App() {
         <Route path="/login" component={Login} exact />
         <Route path="/image" component={Image} exact />
         <Route path="/editprofile" component={EditProfile} exact />
-        <Route path="/profile" component={Profile} exact />
+        <Route path="/profile/:id" component={Profile} exact />
         <Route path="/" component={Home} exact />
       </Router>
   );

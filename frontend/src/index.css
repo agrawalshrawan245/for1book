@@ -43,5 +43,5 @@ a {
 }
 
 .card {
-  @apply border rounded-xl p-5 bg-white shadow-xl
+  @apply border rounded-xl p-5 bg-white shadow-xl m-3
 }

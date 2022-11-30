@@ -9,8 +9,8 @@ const userProtect = asyncHandler(async(req, res, next) => {
             token = req.headers.authorization.split(" ")[1]
             const {id} = jwt.verify(token, process.env.JWT_PASSWORD)
             req.user = await User.findById(id)
-            // console.log(req.body)
-            // console.log(req.user.email)
+            // console.log(req.params.id)
+            // console.log(req.user._id)
             next()
         }catch(error){
             res.status(401)
