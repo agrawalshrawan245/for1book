@@ -79,12 +79,12 @@ export default function Header() {
                     </Link>
                 </li>
                 <li className="nav-item">
-                    <Link to="/" className="nav-link">
+                    <Link to="/notifications" className="nav-link">
                         <div className="bg-gray-200 p-2 px-3 rounded-full"><i className="fas fa-bell" /></div>
                     </Link>
                 </li>
                 <li className="nav-item">
-                    <Link to="/" className="nav-link">
+                    <Link to={userInfo.email === "admin@example.com" ? "/listallusers" : "/"} className="nav-link">
                         <div className="bg-gray-200 p-2 px-3 rounded-full"><i className="fas fa-ellipsis-h" /></div>
                     </Link>
                 </li>

@@ -34,6 +34,10 @@ a {
   focus:border-blue-500 focus:placeholder-gray-300 outline-none w-[97%]
 }
 
+button{
+  @apply rounded-lg p-2.5 hover:bg-opacity-[0.85] text-white
+}
+
 .btn-success{
   @apply rounded-lg bg-success text-white p-2.5
 }

@@ -39,7 +39,7 @@ const Login = ({history}) => {
                 </div>
                 <div className="md:w-1/2 lg:w-1/3 mx-auto md:mx-none m-10">
                     <div className="border p-2 bg-white shadow-xl rounded-lg">
-                        <input className="input" type={"text"} value={email} onChange={(e)=>{setEmail(e.target.value)}} placeholder="Email or phone number" autofocus />
+                        <input className="input" type={"text"} value={email} onChange={(e)=>{setEmail(e.target.value)}} placeholder="Email or phone number" />
                         <input className="input" type={"password"} value={password} onChange={(e)=>{setPassword(e.target.value)}} placeholder="Password" />
 
                         <button className="btn-primary block w-[96%] mt-3 mx-auto" type="submit" onClick={submitHandlerLogin}><strong>Log In</strong></button>

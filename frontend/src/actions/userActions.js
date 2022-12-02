@@ -1,6 +1,8 @@
 import axios from "axios";
 import cookies from "js-cookie";
 
+
+
 export const userDetailsA = (_id) => async(dispatch, getState) => {
     try{
         const {userLogin:{userInfo}} = getState()

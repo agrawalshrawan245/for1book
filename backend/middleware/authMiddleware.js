@@ -7,8 +7,9 @@ const userProtect = asyncHandler(async(req, res, next) => {
     if(req.headers.authorization && req.headers.authorization.startsWith("Bearer")){
         try{
             token = req.headers.authorization.split(" ")[1]
+            // console.log(token)
             const {id} = jwt.verify(token, process.env.JWT_PASSWORD)
-            req.user = await User.findById(id)
+            req.user = await User.findById(id).select("-password")
             // console.log(req.params.id)
             // console.log(req.user._id)
             next()

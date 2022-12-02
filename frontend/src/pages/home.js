@@ -1,12 +1,20 @@
 /* eslint-disable no-unused-vars */
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import Header from "../components/Header";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { userDetailsA } from "../actions/userActions";
 
 
 
 export default function Home(){
     const {loading, userInfo, error} = useSelector(s=>s.userLogin)
+    const {userDetails} = useSelector(s=>s.userDetails)
+    const dispatch = useDispatch()
+
+    useEffect(()=>{
+        dispatch(userDetailsA("mydetails"))
+    },[dispatch])
 
     return (
         <>
@@ -18,7 +26,7 @@ export default function Home(){
                 <div className="grid grid-cols-5 mt-16 w-screen">
 
                     {/* First */}
-                    <div className="relative hidden md:block">
+                    <div className="relative hidden h-screen md:block">
                         <div className="fixed">
                             <Link to={`/profile/${userInfo._id}`}>
                                 <div className="flex my-2">
@@ -77,18 +85,15 @@ export default function Home(){
                     <div className="relative sm:block hidden">
                         <div className="fixed">
                             <p className="text-lg font-medium">Contacts</p>
-                            <div className="mt-3 flex">
-                                <img className="rounded-full mx-4 object-cover h-10 w-10" alt="" src={userInfo.picture} />
-                                <h5 className="font-medium">{userInfo.first_name} {userInfo.last_name}</h5>
-                            </div>
-                            <div className="mt-3 flex">
-                                <img className="rounded-full mx-4 object-cover h-10 w-10" alt="" src={userInfo.picture} />
-                                <h5 className="font-medium">{userInfo.first_name} {userInfo.last_name}</h5>
-                            </div>
-                            <div className="mt-3 flex">
-                                <img className="rounded-full mx-4 object-cover h-10 w-10" alt="" src={userInfo.picture} />
-                                <h5 className="font-medium">{userInfo.first_name} {userInfo.last_name}</h5>
-                            </div>
+                            {/* {userDetails && userDetails.friends && console.log(userDetails.friends)}  */}
+                            {userDetails && userDetails.friends && userDetails.friends.map((fri, ind)=>{
+                            return <Link to={`/profile/${fri._id}`} key={ind}>
+                                <div className="p-1.5 rounded-lg flex hover:bg-gray-200">
+                                    <img className="rounded-full mx-4 object-cover h-10 w-10" alt="" src={fri.picture} />
+                                    <h5 className="font-medium flex-grow">{fri.first_name} {fri.last_name}</h5>
+                                </div>
+                            </Link>
+                            })} 
                         </div>
                     </div>
                 </div>

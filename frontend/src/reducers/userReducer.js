@@ -24,6 +24,7 @@ export const userDetailsR = (state={}, action) => {
     }
 }
 
+
 export const userRegisterR = userLoginR;
 
 

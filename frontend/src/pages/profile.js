@@ -40,13 +40,12 @@ export default function Profile({match}) {
                             <h1 className='text-4xl my-5 ml-5'><strong>{userDetails.first_name} {userDetails.last_name}</strong></h1>
                             <div className='flex justify-between mx-6 items-end'>
                                 <div className='flex-col'>
-                                    <h1>122 Friends</h1>
-                                    <div className='flex ml-0'>
-                                        <img alt="" src={userDetails.picture} className="rounded-full h-10 w-10 object-cover border-2 border-white" />
-                                        <img alt="" src={userDetails.picture} className="rounded-full h-10 w-10 object-cover border-2 border-white -ml-3" />
-                                        <img alt="" src={userDetails.picture} className="rounded-full h-10 w-10 object-cover border-2 border-white -ml-3" />
-                                        <img alt="" src={userDetails.picture} className="rounded-full h-10 w-10 object-cover border-2 border-white -ml-3" />
-                                        <img alt="" src={userDetails.picture} className="rounded-full h-10 w-10 object-cover border-2 border-white -ml-3" />
+                                    {userDetails.friends && <h1>{userDetails.friends.length} Friends</h1>}
+                                    <div className='flex ml-3'>
+										{userDetails.friends && userDetails.friends.map((fri,  ind)=>{
+											if(ind > 6) return null;
+											else return <img key={ind} alt="" src={fri.picture} className="rounded-full h-10 w-10 object-cover border-2 border-white -ml-3" />
+										})}
                                     </div>
                                 </div>
                                 {
@@ -59,14 +58,14 @@ export default function Profile({match}) {
                     </div>
                 </div>
 
-}
+                    }
                 <div className='flex md:w-9/12 mx-auto'>
                     <button className='py-4 px-5 border-b-4 border-blue-500 m-0'>Posts</button>
                     <button className='py-4 px-5 m-0'>Friends</button>
                     <button className='py-4 px-5 m-0'>Photos</button>
                 </div>
 
-            </div>
+          </div>
             <h1>hi</h1>
             <h1>hi</h1>
             <h1>hi</h1>
