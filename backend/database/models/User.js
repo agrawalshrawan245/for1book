@@ -68,6 +68,11 @@ const userSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    photos: [
+    {
+      type: String,
+    },
+    ],
     friends: [
       {
         type: ObjectId,

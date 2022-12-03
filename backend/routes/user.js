@@ -1,5 +1,5 @@
 const express = require("express");
-const { register, login, update, searchUsers, userDetails, friendReq, userDetailsAll, friendReqAcc, friendReqRej, listAll} = require("../controllers/user");
+const { register, login, update, searchUsers, userDetails, friendReq, userDetailsAll, friendReqAcc, friendReqRej, listAll, unfriend} = require("../controllers/user");
 const userProtect = require("../middleware/authMiddleware");
 const router = express.Router();
 
@@ -22,6 +22,7 @@ router.get("/profile/:id", userProtect, userDetails)
 router.post("/friendreq/:id", userProtect, friendReq)
 router.post("/friendreqacc/:id", userProtect, friendReqAcc)
 router.post("/friendreqrej/:id", userProtect, friendReqRej)
+router.post("/unfriend/:id", userProtect, unfriend)
 // router.get("/searchuser", userProtect, searchUsers)
 
 

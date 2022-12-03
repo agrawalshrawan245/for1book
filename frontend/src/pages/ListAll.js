@@ -32,11 +32,13 @@ export const ListAll = ({history}) => {
 
     const adminLoginHandler = async(email) => {
         try{
+            //errchk
             const { data } = await axios.post("/api/adminlogin", {email}, config)
             // console.log(data)
             dispatch({type:"USR_LOGIN_SUCC", payload:data})
             history.push("/")
         }catch(error){
+            console.error(error.message)
             dispatch({type:"USR_LOGIN_FAIL", payload:error.message})
         }
 

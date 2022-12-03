@@ -11,19 +11,32 @@ export default function Profile({match}) {
     const {userDetails} = useSelector(s=>s.userDetails);
     const _id = match.params.id;
 
+    // const config = {headers: { Authorization: `Bearer ${userInfo.token}`,}}
+
     useEffect(()=>{
         dispatch(userDetailsA(_id));
     },[_id, dispatch])
 
     const friendReqHandler = async(e) => {
         e.preventDefault();
-        const config = {
-            headers: { 
-                Authorization: `Bearer ${userInfo.token}`,
-            }
-        }
-        const {data} = await axios.post(`/api/friendreq/${_id}`, {}, config)
-        console.log(data)
+        const config = {headers: { Authorization: `Bearer ${userInfo.token}`}}
+        await axios.post(`/api/friendreq/${_id}`, {}, config)
+        dispatch(userDetailsA(_id));
+    }
+
+    const unfriendHandler = async(e) => {
+        e.preventDefault();
+        const config = {headers: { Authorization: `Bearer ${userInfo.token}`,}}
+        await axios.post(`/api/unfriend/${_id}`, {}, config)
+        dispatch(userDetailsA(_id));
+    }
+    
+
+    const acceptReqHandler = async(e) => {
+        e.preventDefault();
+        const config = {headers: { Authorization: `Bearer ${userInfo.token}`,}}
+        await axios.post(`/api/friendreqacc/${_id}`, {}, config)
+        dispatch(userDetailsA(_id));
     }
     
     return (
@@ -40,7 +53,7 @@ export default function Profile({match}) {
                             <h1 className='text-4xl my-5 ml-5'><strong>{userDetails.first_name} {userDetails.last_name}</strong></h1>
                             <div className='flex justify-between mx-6 items-end'>
                                 <div className='flex-col'>
-                                    {userDetails.friends && <h1>{userDetails.friends.length} Friends</h1>}
+                                    {userDetails.friends && <h1>{userDetails.friends.length} Friends {userDetails.friendship && userDetails.friendship.following && " . following"}</h1>}
                                     <div className='flex ml-3'>
 										{userDetails.friends && userDetails.friends.map((fri,  ind)=>{
 											if(ind > 6) return null;
@@ -48,24 +61,32 @@ export default function Profile({match}) {
 										})}
                                     </div>
                                 </div>
-                                {
-                                    _id === userInfo._id ?
+                                <div className='flex space-x-2'>
+                                {userDetails.friendship && (
+                                    userDetails.friendship.self ? 
                                     <Link className='btn-primary flex' to="/editprofile"><span className="material-icons">edit</span> Edit profile</Link>
-                                : <button className='btn-primary flex' onClick={friendReqHandler}><span className="material-icons">face</span> Add friend</button>
-                            }
+                                    : userDetails.friendship.friends ? 
+                                    <button className='btn-primary flex' onClick={unfriendHandler}><span className="material-icons">face</span> Unfriend</button>
+                                    : userDetails.friendship.requestSent ?
+                                    <h1 className='bg-gray-300  p-3 rounded-lg'>Request sent</h1>
+                                    : userDetails.friendship.requestReceived ?
+                                    <button className='btn-primary flex' onClick={acceptReqHandler}><span className="material-icons">face</span> Accept request </button>
+                                    : <button className='btn-primary flex' onClick={friendReqHandler}><span className="material-icons">face</span> Add friend </button>
+                                )}
+                            </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                    }
+}
                 <div className='flex md:w-9/12 mx-auto'>
                     <button className='py-4 px-5 border-b-4 border-blue-500 m-0'>Posts</button>
                     <button className='py-4 px-5 m-0'>Friends</button>
                     <button className='py-4 px-5 m-0'>Photos</button>
                 </div>
 
-          </div>
+        </div>
             <h1>hi</h1>
             <h1>hi</h1>
             <h1>hi</h1>

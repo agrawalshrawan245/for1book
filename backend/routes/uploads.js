@@ -3,6 +3,10 @@ const path = require("path");
 const express = require("express");
 const {S3} = require("aws-sdk");
 const userProtect = require("../middleware/authMiddleware");
+const User = require("../database/models/User")
+const asyncHandler = require("express-async-handler")
+
+
 
 const router = express.Router()
 
@@ -34,10 +38,12 @@ function checkFileType(file, cb) {
 
 const upload = multer({ storage, fileFilter: function (req, file, cb) { checkFileType(file, cb) },})
 
-router.post('/database', userProtect, upload.single('image'), async (req, res) => { 
+router.post('/database', userProtect, upload.single('image'), asyncHandler(async (req, res) => { 
   const result = await s3UploadV2(req.file, req.user.username);
+  req.user.photos.push(result.Location);
+  await req.user.save();
   res.send(result.Location)
-})
+}))
 
 // router.post('/uploads', upload.single('image'), (req, res) => { res.json(`/${req.file.path}`) })
 
