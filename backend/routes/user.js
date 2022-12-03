@@ -1,7 +1,7 @@
 const express = require("express");
-const { register, login, update, searchUsers, userDetails, friendReq, userDetailsAll, friendReqAcc, friendReqRej, listAll, unfriend} = require("../controllers/user");
-const userProtect = require("../middleware/authMiddleware");
 const router = express.Router();
+const userProtect = require("../middleware/authMiddleware");
+const { register, login, update, searchUsers, userDetails, friendReq, userDetailsAll, friendReqAcc, friendReqRej, listAll, unfriend} = require("../controllers/user");
 
 router.get("/listallusers", userProtect, listAll)
 

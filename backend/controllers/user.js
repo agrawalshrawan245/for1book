@@ -11,7 +11,7 @@ const regexEmail = /^([a-z0-9/.]{3,})@([a-z]{3,11}).(com)$/i
 const regexPassword = /^.{4,}$/
 
 exports.userDetailsAll = asyncHandler(async(req,res) => {
-    const user = await User.findById(req.user._id).select("-password")
+    const user = await User.findById(req.user._id, {chat:0, password:0})
     .populate('followers', 'first_name last_name picture username')
     .populate('following', 'first_name last_name picture username')
     .populate('friends', 'first_name last_name picture username')
@@ -75,8 +75,8 @@ exports.friendReqAcc = asyncHandler(async(req, res) => {
     req.user.following.push(_idFriend);
     friend.followers.push(req.user.id);
 
-    const chat = new Chat({user:{0:_idFriend, 1:req.user._id}})
-    console.log(chat)
+    const chat = await new Chat({user:{A:_idFriend, B:req.user._id}}).save();
+    // console.log(chat)
     req.user.chats.push(chat._id)
     friend.chats.push(chat._id)
     await req.user.save();

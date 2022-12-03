@@ -74,7 +74,7 @@ export default function Header() {
             {/* Last */}
             <ul className="flex max-w-48 space-x-2 pl-5 mr-4">
                 <li className="nav-item">
-                    <Link to="/" className="nav-link">
+                    <Link to="/messenger" className="nav-link">
                         <div className="bg-gray-200 rounded-full p-2 px-3"><i className="fab fa-facebook-messenger text-dark" /></div>
                     </Link>
                 </li>

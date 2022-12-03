@@ -6,25 +6,20 @@ const chatSchema = new mongoose.Schema(
     {
         newMessage:{
             type: Boolean,
-            default: true,
+            default: false,
         },
         text: [
             {
-                chat:{
-                    message: {
-                        type: String,
-                        required: true,
-                    },
-                    sendBy: {
-                        type: Number,
-                        required: true,
-                    },
-                    commentAt: {
-                        type: Date,
-                        required: true,
-                    },
+                message: {
+                    type: String,
+                    required: true,
                 },
-                savedAt: {
+                sendBy: {
+                    type: ObjectId,
+                    ref: "User",
+                    required: true,
+                },
+                commentAt: {
                     type: Date,
                     default: new Date(),
                 },
@@ -32,12 +27,12 @@ const chatSchema = new mongoose.Schema(
 
         ],
         user: {
-            0:{
+            A:{
                 type: ObjectId,
                 ref: "User",
                 required: true,
             },
-            1:{
+            B:{
                 type: ObjectId,
                 ref: "User",
                 required: true,
