@@ -5,7 +5,7 @@ const User = require("../database/models/User")
 
 exports.chatId = asyncHandler(async(req, res) => {
     const fid = req.params.friendid
-    if(!req.user.friends.indexOf(fid) ==-1){res.status(404).send("User not found!")}
+    if(!req.user.friends.indexOf(fid) ==-1 || fid == req.params._id){res.status(404).send("User not found!")}
     await req.user.populate("chats", 'user')
     for(let i = 0; i < req.user.chats.length; i++){
         if(req.user.chats[i].user.A == fid || req.user.chats[i].user.B == fid){

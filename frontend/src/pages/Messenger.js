@@ -54,17 +54,17 @@ export const Messenger = ({match}) => {
         </div>
 
         <div className="col-span-3 mt-6">
-            {_fid ? <div className="">
+            {_fid ? <div className="mr-20">
                 <h1 className="text-xl font-semibold mt-7 mb-4">Happy chatting</h1>
                 {chat.text && chat.text.map((curr, ind)=>{
                     return <div key={ind}>
                     {curr.sendBy === _fid ? 
-                        <div className="flex p-1 bg-gray-200 m-1 rounded-lg">
-                        <img className="rounded-full mx-4 object-cover h-7 w-7" alt="" src={userDetails && userDetails.picture} />
-                        <h5 className="font-semibold pt-0">{curr.message}</h5>
-                        </div> : <div className="flex p-1 m-1 flex-row-reverse bg-blue-200 rounded-lg">
-                        <img className="rounded-full mx-4 object-cover h-7 w-7" alt="" src={userInfo && userInfo.picture} />
-                        <h5 className="font-semibold pt-0">{curr.message}</h5>
+                        <div className="flex p-1 bg-gray-200 m-1 rounded-lg w-max max-w-md">
+                            <img className="rounded-full mx-4 object-cover h-7 w-7" alt="" src={userDetails && userDetails.picture} />
+                            <h5 className="font-semibold pt-0">{curr.message}</h5>
+                        </div> : <div className="flex p-1 m-1 flex-row-reverse bg-blue-200 rounded-lg w-max ml-auto max-w-md">
+                            <img className="rounded-full mx-4 object-cover h-7 w-7" alt="" src={userInfo && userInfo.picture} />
+                            <h5 className="font-semibold pt-0">{curr.message}</h5>
                         </div>
                     }
                         {/* <h1>{curr.message}</h1> */}

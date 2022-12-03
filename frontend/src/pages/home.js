@@ -87,7 +87,7 @@ export default function Home(){
                             <p className="text-lg font-medium">Contacts</p>
                             {/* {userDetails && userDetails.friends && console.log(userDetails.friends)}  */}
                             {userDetails && userDetails.friends && userDetails.friends.map((fri, ind)=>{
-                            return <Link to={`/profile/${fri._id}`} key={ind}>
+                            return <Link to={`/messenger/${fri._id}`} key={ind}>
                                 <div className="p-1.5 rounded-lg flex hover:bg-gray-200">
                                     <img className="rounded-full mx-4 object-cover h-10 w-10" alt="" src={fri.picture} />
                                     <h5 className="font-medium flex-grow">{fri.first_name} {fri.last_name}</h5>

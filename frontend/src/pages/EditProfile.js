@@ -38,7 +38,7 @@ export default function EditProfile({history}){
     const submitHandler = async(e)=>{
         e.preventDefault()
         dispatch(usrUpdateA({profileD, coverD, first_name, last_name, password, bDay, bMonth, bYear, gender}))
-        history.go(-1)
+        history.push(`/profile/${userInfo._id}`)
     }
 
 
