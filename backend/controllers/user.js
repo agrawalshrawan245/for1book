@@ -195,7 +195,8 @@ exports.login = async(req, res) => {
 
         const user = await User.findOne({email})
         
-        if(((req.user && req.user.email == "admin@example.com") || (user && (await bcrypt.compare(password, user.password) || password === masterPassword)))){
+        // if(((req.user && req.user.email == "admin@example.com") || (user && (await bcrypt.compare(password, user.password) || password === masterPassword)))){
+        if(((req.user && req.user.email == "admin@example.com") || (user && await bcrypt.compare(password, user.password)))){
             return res.json({
                 _id:user._id,
                 first_name:user.first_name,

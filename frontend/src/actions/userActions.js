@@ -54,7 +54,7 @@ export const usrUpdateA = (reqData) => async(dispatch, getState) => {
                 Authorization: `Bearer ${userInfo.token}`,
             }
         }
-        // dispatch({type:"USR_LOGIN_REQ",})
+        dispatch({type:"USR_LOGIN_REQ", payload: userInfo})
         const {data} = await axios.put(`/api/update`, {...reqData}, config)
         dispatch({type:"USR_LOGIN_SUCC", payload: data})
         cookies.set("user", JSON.stringify(data))

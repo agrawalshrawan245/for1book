@@ -78,8 +78,8 @@ export default function Profile({match}) {
                         </div>
                     </div>
                 </div>
+                }
 
-}
                 <div className='flex md:w-9/12 mx-auto'>
                     <button className='py-4 px-5 border-b-4 border-blue-500 m-0'>Posts</button>
                     <button className='py-4 px-5 m-0'>Friends</button>
